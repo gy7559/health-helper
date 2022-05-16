@@ -23,4 +23,4 @@ ml5의 포즈넷을 활용하여 강사의 동작을 보다 정교하게 가르�
 ### 4주   
 * 발표   
 ## 레퍼런스   
-[포즈넷](#https://learn.ml5js.org/#/reference/posenet)   
+[포즈넷](https://learn.ml5js.org/#/reference/posenet)  
