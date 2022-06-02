@@ -3,16 +3,15 @@ let video
 let size=0;
 let poseNet;
 let poses=[];
-//let keypointX=[];
-//let keypointY=[];
-//let skeletons=[];
 
 
 function setup() {
-  dropBox = createCanvas(1240, 1080);
-  background(100)
+  dropBox = createCanvas(1280, 720);
+   dropBox.background(190);
   input = createFileInput((file)=>{
+    
     if(file.type === "video"){
+      input.hide();
       video = createVideo(file.data, vidLoad)
       video.size(width,height)
       video.hide()
@@ -23,24 +22,10 @@ function setup() {
       });
     }
   })
-  input.position(0,0)
-  //video = createCapture(VIDEO)
-  
-  
-  /*dropBox.drop(afterDrop)*/
-  
+  input.size(75,100)
+  input.position(width/2,height/2)  
 }
 
-
-/*function afterDrop(file){
-  console.log(file)
-  dropBox.hide()
-  video = createVideo(file.data, vidLoad)
-  video.hide()
-  poseNet = ml5.poseNet(video,modelReady);  
-  poseNet.on('pose', gotResult);
-  console.log("posenet excute")
-}*/
 
 function vidLoad(){
   video.loop()
@@ -51,12 +36,6 @@ function vidLoad(){
 function modelReady(){
   console.log('model OK');
 }
-
-/*function gotResult(results){
-  console.log("results = "+results)
-  poses = results[0].pose.keypoints;
-  skeletons = results[0].skeleton;
-}*/
 function drawKeypoints(){
   for (let i = 0; i < poses.length; i++) {
     // For each pose detected, loop through all the keypoints
@@ -92,17 +71,5 @@ function draw(){
     image(video,0,0,width,height);
     drawKeypoints()
     drawSkeleton()  
-  }
-  /*fill('#FFFF00');
-  stroke('#FF0000');
-  strokeWeight(3);
-  for(let i = 5; i < poses.length; i++){
-    keypointX[i]=round(poses[i].position.x);
-    keypointY[i]=round(poses[i].position.y);
-    ellipse(keypointX[i], keypointY[i],10);
-  }
-  stroke('#FFFF00');
-  strokeWeight(2);
-  for(let i=0; i< skeletons.length; i++){
-    line(round(skeletons[i][0].position.x), round(skeletons[i][0].position.y), round(skeletons[i][1].position.x), round(skeletons[i][1].position.y));
-  }*/
+  }  
+}
